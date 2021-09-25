@@ -27,6 +27,7 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   datetime_picker_formfield: any
   anim_search_bar: ^2.0.2
+  flutter_material_pickers: ^3.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
