@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:ebloom_app/Config/app_config.dart';
 
 class OrderDetailScreen extends StatelessWidget {
