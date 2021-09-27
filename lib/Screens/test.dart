@@ -1,32 +1,73 @@
-import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+import '../Model/wModel.dart';
 
 
-
-class TestApp extends StatefulWidget {
+class TestPage extends StatefulWidget {
   @override
-  _TestAppState createState() => _TestAppState();
+  _TestPageState createState() => _TestPageState();
 }
 
-class _TestAppState extends State<TestApp> {
-  TextEditingController textController = TextEditingController();
+class _TestPageState extends State<TestPage> {
+  var model = TimingModel();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 58.0, right: 10, left: 10),
-
-      /// In AnimSearchBar widget, the width, textController, onSuffixTap are required properties.
-      /// You have also control over the suffixIcon, prefixIcon, helpText and animationDurationInMilli
-      child: AnimSearchBar(
-        width: 400,
-        textController: textController,
-        onSuffixTap: () {
-          setState(() {
-            textController.clear();
-          });
-        },
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: AppBar(
+        title: Text('Material Picker Examples'),
+      ),
+      body: SafeArea(
+        child: Container(
+          margin: EdgeInsets.all(8.0),
+          child: Card(
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: ListView(
+                children: <Widget>[
+                  Divider(),
+                  buildScrollRow(context),
+                  Divider(),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
+
+
+  Row buildScrollRow(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width/1.2,
+          child: ElevatedButton(
+
+            child: Text(
+              '${model.selectedTime}',
+              textAlign: TextAlign.right,
+            ),
+
+            onPressed: () => showMaterialScrollPicker<PickerModel>(
+              context: context,
+              title: 'Pick Delivery Time',
+              showDivider: false,
+              maxLongSide: 500,
+              items: TimingModel.deliveryTimings,
+              selectedItem: model.selectedTime,
+              onChanged: (value) =>
+                  setState(() => model.selectedTime = value),
+              onCancelled: () => print('Scroll Picker cancelled'),
+              onConfirmed: () => print('Scroll Picker confirmed'),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 }
