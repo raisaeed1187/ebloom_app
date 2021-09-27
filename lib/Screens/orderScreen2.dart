@@ -1,11 +1,11 @@
 import 'package:ebloom_app/Config/app_config.dart';
+import 'package:ebloom_app/Model/wModel.dart';
 import 'package:ebloom_app/Widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ebloom_app/Widgets/DateTimePicker.dart';
 
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
-import '../Model/wModel.dart';
 
 
 class OrderScreen2 extends StatefulWidget {
@@ -23,6 +23,18 @@ class _OrderScreen2State extends State<OrderScreen2> {
 
   List<String> invoiceType = ['Receipt', 'Invoice',];
   String selectedInvoiceType = 'Receipt';
+
+
+  String itemType = '';
+  bool isItemSelected = false;
+  int selectedItem =0;
+  List<String> itemsList = [
+    '10:00 - 12:00',
+    '14:00 - 16:00',
+    '16:00 - 18:00',
+    '18:00 - 20:00',
+    'Anytime'
+  ];
 
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
@@ -108,100 +120,32 @@ class _OrderScreen2State extends State<OrderScreen2> {
 
                   SizedBox(height: 10,),
 
-                  Row(
-                    children: [
-                      Container(
-                        width: _screenSize.width / 3,
-                        padding: EdgeInsets.only(right: 5.0, left: 10.0, top: 3.0, bottom: 3.0,),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Flexible(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Icon(Icons.add, color: kGreyColor, size: 18.0,),
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        SizedBox(height: 20.0),
-                                        Text(
-                                          "Coupon",
-                                          textAlign: TextAlign.left,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),
-                                        ),
-                                        SizedBox(height: 20.0),
-                                      ],
-                                    ),
-                                  ),
+                  TextFormField(
+                    style: TextStyle(color: kDarkColor),
+                    keyboardType: TextInputType.text,
+                    // validator: validateEmail,
+                    onChanged: (value) {
+                    },
+                    decoration: new InputDecoration(
+                      hintText: 'Coupon Code',
+                      hintStyle: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),
+                      fillColor: kBackgroundColor,
+                      filled: true,
+                      isDense: true, // Added this
+                      contentPadding: EdgeInsets.all(16),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                        borderSide: BorderSide(width: 0.8, color: kLightGreyColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                          borderSide: BorderSide(width: 0.8, color: kLightGreyColor)),
 
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: kBackgroundColor,
-                          border: Border.all(color: kLightGreyColor, width: 0.8,),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      SizedBox(width: 10,),
-                      Container(
-                        width: _screenSize.width / 1.78,
-                        padding: EdgeInsets.only(right: 5.0, left: 10.0, top: 3.0, bottom: 3.0,),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Flexible(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        SizedBox(height: 10.0),
-                                        Text(
-                                          "Payment Method",
-                                          textAlign: TextAlign.left,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),
-                                        ),
-                                        SizedBox(height: 2,),
-                                        Text(
-                                          "Card",
-                                          textScaleFactor: 0.96,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            letterSpacing: 0.1,
-                                            color: kDarkColor,
-                                            //  fontFamily: 'Montserrat-SB',
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                        SizedBox(height: 10.0),
-                                      ],
-                                    ),
-                                  ),
-                                  Icon(Icons.arrow_forward_ios, color: kGreyColor, size: 18.0,),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        decoration: BoxDecoration(
-                          color: kBackgroundColor,
-                          border: Border.all(color: kLightGreyColor, width: 0.8,),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   SizedBox(height: 10,),
+
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.only(right: 5.0, left: 10.0, top: 3.0, bottom: 3.0,),
@@ -348,85 +292,6 @@ class _OrderScreen2State extends State<OrderScreen2> {
                     ),
                   ),
                   SizedBox(height: 15,),
-
-
-                  /*Text(
-                    "Doorbell Name",
-                    textScaleFactor: 0.96,
-                    style: TextStyle(
-                      fontSize: 16,
-                      letterSpacing: 0.1,
-                      color: kDarkColor,
-                      //  fontFamily: 'Montserrat-SB',
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  SizedBox(height: 6,),
-                  TextFormField(
-                    style: TextStyle(color: kDarkColor),
-                    keyboardType: TextInputType.text,
-                    // validator: validateEmail,
-                    onChanged: (value) {
-                    },
-                    decoration: new InputDecoration(
-                      hintText: 'Doorbell Name',
-                      hintStyle: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),
-                      fillColor: kBackgroundColor,
-                      filled: true,
-                      isDense: true, // Added this
-                      contentPadding: EdgeInsets.all(16),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 0.8, color: kLightGreyColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(width: 0.8, color: kLightGreyColor)),
-
-                    ),
-                  ),
-                  SizedBox(height: 15,),
-
-
-
-                  Text(
-                    "Floor",
-                    textScaleFactor: 0.96,
-                    style: TextStyle(
-                      fontSize: 16,
-                      letterSpacing: 0.1,
-                      color: kDarkColor,
-                      //  fontFamily: 'Montserrat-SB',
-                      fontWeight: FontWeight.w700,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                  SizedBox(height: 6,),
-                  TextFormField(
-                    style: TextStyle(color: kDarkColor),
-                    keyboardType: TextInputType.text,
-                    // validator: validateEmail,
-                    onChanged: (value) {
-                    },
-                    decoration: new InputDecoration(
-                      hintText: 'e.g 1',
-                      hintStyle: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),
-                      fillColor: kBackgroundColor,
-                      filled: true,
-                      isDense: true, // Added this
-                      contentPadding: EdgeInsets.all(16),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                        borderSide: BorderSide(width: 0.8, color: kLightGreyColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                          borderSide: BorderSide(width: 0.8, color: kLightGreyColor)),
-
-                    ),
-                  ),
-                  SizedBox(height: 15,),*/
 
 
                   Row(
@@ -1215,7 +1080,7 @@ class _OrderScreen2State extends State<OrderScreen2> {
 
   Widget buildScrollRow(BuildContext context) {
     return GestureDetector(
-      onTap: () => showMaterialScrollPicker<PickerModel>(
+      /*onTap: () => showMaterialScrollPicker<PickerModel>(
         context: context,
         title: 'Pick Delivery Time',
         showDivider: false,
@@ -1226,7 +1091,79 @@ class _OrderScreen2State extends State<OrderScreen2> {
             setState(() => model.selectedTime = value),
         onCancelled: () => print('Scroll Picker cancelled'),
         onConfirmed: () => print('Scroll Picker confirmed'),
-      ),
+      ),*/
+      onTap: () async {
+        await showModalBottomSheet<int>(
+          context: context,
+          isDismissible: true,
+          useRootNavigator: true,
+          builder: (BuildContext context) {
+            return Container(
+              color: Colors.transparent,
+              height: 300,
+              child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.transparent,
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: ()
+                        {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          color: kBackgroundColor,
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(
+                                'Done',
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontFamily: 'Montserrat-M',
+                                  color: kMainColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 250,
+                        child: CupertinoPicker(
+                          itemExtent: 60.0,
+                          backgroundColor: CupertinoColors.white,
+                          onSelectedItemChanged: (index) {
+                            setState(() {
+                              selectedItem = index;
+                              itemType = itemsList[index];
+                              isItemSelected = true;
+                            });
+                            print(index);
+                            print('This is selected ${itemsList[selectedItem]}');
+                          },
+                          children: List<Widget>.generate(itemsList.length, (index) {
+                            return Container(
+                              child: Center(
+                                child: Text(
+                                  itemsList[index],
+                                  style: TextStyle(fontSize: 22.0),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
       child: Container(
           width: double.infinity,
           padding: EdgeInsets.only(right: 5.0, left: 10.0, top: 3.0, bottom: 3.0,),
@@ -1243,7 +1180,13 @@ class _OrderScreen2State extends State<OrderScreen2> {
                         children: <Widget>[
                           SizedBox(height: 14.0),
                           Text(
-                            '${model.selectedTime}',
+                            //'${model.selectedTime}',
+                              isItemSelected == true
+                                  ?
+                                itemType
+                                  :
+                                itemsList.last,
+
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(color: kGreyColor, fontSize: 14.0, fontWeight: FontWeight.w400,),

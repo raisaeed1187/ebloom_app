@@ -286,7 +286,7 @@ class _CartScreenState extends State<CartScreen> {
 
                   Button(
                     onTap: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OrderScreen2()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderScreen2()));
                     },
                     buttonText: 'ORDER',
                     height:  0.065,
