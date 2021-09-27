@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: AnimatedSplashScreen(),
-      //home: TestApp(),
-      debugShowCheckedModeBanner: false,
+      //home: TestPage(),
+      //debugShowCheckedModeBanner: false,
     );
   }
 }
