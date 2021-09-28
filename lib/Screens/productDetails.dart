@@ -311,7 +311,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
                               Container(
                                 //height: 100,
-                                height: _screenSize.height * 0.12,
+                                height: _screenSize.height * 0.10,
                                 //color: kMainColor,
                                 width: double.infinity,
                                 child:data.length == 0 ? dynamicTextField : Container(),
