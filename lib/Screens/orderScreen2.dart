@@ -1,5 +1,6 @@
 import 'package:ebloom_app/Config/app_config.dart';
 import 'package:ebloom_app/Model/wModel.dart';
+import 'package:ebloom_app/Screens/thanksScreen.dart';
 import 'package:ebloom_app/Widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -1052,7 +1053,10 @@ class _OrderScreen2State extends State<OrderScreen2> {
 
 
                   Button(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                          ThanksScreen()), (Route<dynamic> route) => false);
+                    },
                     buttonText: 'ORDER',
                     height:  0.065,
                   ),
