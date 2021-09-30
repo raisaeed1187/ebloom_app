@@ -1,6 +1,7 @@
 import 'package:ebloom_app/Screens/orderScreen2.dart';
 import 'package:ebloom_app/Screens/splash_screen.dart';
 import 'package:ebloom_app/Screens/test.dart';
+import 'package:ebloom_app/Screens/thanksScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ebloom_app/Screens/login_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: AnimatedSplashScreen(),
-      //home: TestPage(),
+      //home: ThanksScreen(),
       //debugShowCheckedModeBanner: false,
     );
   }

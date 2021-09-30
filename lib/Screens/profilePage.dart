@@ -1,8 +1,12 @@
 import 'package:ebloom_app/Config/app_config.dart';
 import 'package:ebloom_app/Screens/mainHomepage.dart';
+import 'package:ebloom_app/Screens/myOrdersScreen.dart';
+import 'package:ebloom_app/Screens/updateProfile.dart';
 import 'package:ebloom_app/Widgets/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'aboutScreen.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
@@ -129,6 +133,7 @@ class ProfilePage extends StatelessWidget {
                 label: 'My Profile',
                 onPress: ()
                 {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateProfile()));
                 },
               ),
               SettingContainer(
@@ -136,9 +141,10 @@ class ProfilePage extends StatelessWidget {
                 label: 'My Orders',
                 onPress: ()
                 {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> MyOrdersScreen()));
                 },
               ),
-              SettingContainer(
+              /*SettingContainer(
                 iconData: Icons.location_on,
                 label: 'My Addresses',
                 onPress: ()
@@ -151,7 +157,7 @@ class ProfilePage extends StatelessWidget {
                 onPress: ()
                 {
                 },
-              ),
+              ),*/
 
 
               SizedBox(height: 20.0,),
@@ -186,6 +192,8 @@ class ProfilePage extends StatelessWidget {
                 label: 'About eBloom',
                 onPress: ()
                 {
+
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> AboutScreen()));
                 },
               ),
               SettingContainer(
